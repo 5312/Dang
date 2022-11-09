@@ -1,34 +1,35 @@
 lockfileVersion: 5.4
 
-specifiers:
-  '@ant-design/icons': ^4.7.0
-  '@ant-design/pro-components': ^2.0.1
-  '@types/react': ^18.0.0
-  '@types/react-dom': ^18.0.0
-  '@umijs/max': ^4.0.29
-  antd: ^4.20.7
-  husky: ^8.0.1
-  lint-staged: ^13.0.3
-  prettier: ^2.7.1
-  prettier-plugin-organize-imports: ^2
-  prettier-plugin-packagejson: ^2
-  typescript: ^4.1.2
+importers:
 
-dependencies:
-  '@ant-design/icons': 4.7.0
-  '@ant-design/pro-components': 2.3.30_antd@4.24.1
-  '@umijs/max': 4.0.29_omqn4wjep632fykmq32ilehgiu
-  antd: 4.24.1
-
-devDependencies:
-  '@types/react': 18.0.25
-  '@types/react-dom': 18.0.8
-  husky: 8.0.2
-  lint-staged: 13.0.3
-  prettier: 2.7.1
-  prettier-plugin-organize-imports: 2.3.4_dmjzcauo3cshxeipj7bv64ktgm
-  prettier-plugin-packagejson: 2.3.0_prettier@2.7.1
-  typescript: 4.8.4
+  .:
+    specifiers:
+      '@ant-design/icons': ^4.7.0
+      '@ant-design/pro-components': ^2.3.30
+      '@types/react': ^18.0.0
+      '@types/react-dom': ^18.0.0
+      '@umijs/max': ^4.0.29
+      antd: ^4.20.7
+      husky: ^8.0.1
+      lint-staged: ^13.0.3
+      prettier: ^2.7.1
+      prettier-plugin-organize-imports: ^2
+      prettier-plugin-packagejson: ^2
+      typescript: ^4.1.2
+    dependencies:
+      '@ant-design/icons': 4.7.0
+      '@ant-design/pro-components': 2.3.30_antd@4.24.1
+      '@umijs/max': 4.0.29_omqn4wjep632fykmq32ilehgiu
+      antd: 4.24.1
+    devDependencies:
+      '@types/react': 18.0.25
+      '@types/react-dom': 18.0.8
+      husky: 8.0.2
+      lint-staged: 13.0.3
+      prettier: 2.7.1
+      prettier-plugin-organize-imports: 2.3.4_dmjzcauo3cshxeipj7bv64ktgm
+      prettier-plugin-packagejson: 2.3.0_prettier@2.7.1
+      typescript: 4.8.4
 
 packages:
 
