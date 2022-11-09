@@ -8,7 +8,6 @@
     "build": "max build",
     "dev": "max dev",
     "format": "prettier --cache --write .",
-    "postinstall": "max setup",
     "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev"

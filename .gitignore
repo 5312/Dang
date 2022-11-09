@@ -10,3 +10,23 @@
 /.umi-test
 /dist
 /.mfsu
+
+
+# packages
+/packages/*/node_modules
+/packages/*/src/.umi
+/packages/*/.umi
+/packages/*/src/.umi-production
+/packages/*/dist
+/packages/*/public/Cesium/
+# plugins
+/plugins/*/node_modules
+/plugins/*/src/.umi
+/plugins/*/src/.umi-production
+/plugins/*/dist
+
+# test
+/test/*/node_modules
+/test/*/src/.umi
+/test/*/src/.umi-production
+/test/*/dist
