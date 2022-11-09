@@ -1,5 +1,7 @@
 import { defineConfig } from '@umijs/max';
 
+import routes from './src/router/index';
+
 export default defineConfig({
   antd: {},
   access: {},
@@ -7,28 +9,14 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '@umijs/max',
+    title: '@Dang-admin',
   },
-  routes: [
-    {
-      path: '/',
-      redirect: '/home',
-    },
-    {
-      name: '首页',
-      path: '/home',
-      component: './Home',
-    },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
-    },
-  ],
+  routes: routes,
   npmClient: 'pnpm',
+  proxy: {
+    '/v1': {
+      target: 'http://localhost:87',
+      changeOrigin: true,
+    },
+  },
 });

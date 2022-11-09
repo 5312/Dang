@@ -12,7 +12,7 @@
     "@ant-design/icons": "^4.7.0",
     "@ant-design/pro-components": "^2.3.30",
     "@umijs/max": "^4.0.29",
-    "antd": "^4.20.7"
+    "antd": "^4.24.1"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",
