@@ -9,6 +9,24 @@ const routes = [
   },
   {
     path: '/',
+    name: '系统管理',
+    wrappers: ['@/wrappers/auth'], // 页面权限
+    routes: [
+      { path: '/', redirect: '/sys/menu' },
+      {
+        name: '菜单管理',
+        path: '/sys/menu',
+        component: './System/Menu',
+      },
+      {
+        name: ' CRUD 示例',
+        path: '/table',
+        component: './Table',
+      },
+    ],
+  },
+  /*   {
+    path: '/',
     wrappers: ['@/wrappers/auth'], // 页面权限
     routes: [
       // { path: '/', redirect: '/threejs/cesium' },
@@ -29,7 +47,7 @@ const routes = [
         component: './System/Menu',
       },
     ],
-  },
+  }, */
 ];
 
 export default routes;

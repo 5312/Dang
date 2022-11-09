@@ -5,9 +5,9 @@ declare namespace Menus {
     icon: string;
     parent_id: number;
     status: string;
-    component: number;
+    component: string;
     path: string;
-    type: string;
+    type: 0 | 1;
     hide: number;
     note: string;
     permission: string;
