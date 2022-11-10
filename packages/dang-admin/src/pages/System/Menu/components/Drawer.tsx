@@ -6,6 +6,7 @@ import {
   ProFormText,
 } from '@ant-design/pro-components';
 import { Form, message } from 'antd';
+import React, { PropsWithChildren } from 'react';
 
 const waitTime = (time: number = 100) => {
   return new Promise((resolve) => {
@@ -15,7 +16,16 @@ const waitTime = (time: number = 100) => {
   });
 };
 
-export default () => {
+interface DrawerFormProps {
+  open: boolean;
+  onCancel: any;
+}
+
+const DraweropenForm: React.FC<PropsWithChildren<DrawerFormProps>> = (
+  props,
+) => {
+  const { open, onCancel } = props;
+
   const [form] = Form.useForm<{ name: string; company: string }>();
 
   return (
@@ -24,18 +34,13 @@ export default () => {
       company: string;
     }>
       title="新建菜单"
+      open={open}
+      onOpenChange={onCancel}
       form={form}
-      // trigger={
-      //   <Button type="primary">
-      //     <PlusOutlined />
-      //     新建表单
-      //   </Button>
-      // }
       autoFocusFirstInput
       drawerProps={{
         destroyOnClose: true,
       }}
-      submitTimeout={2000}
       onFinish={async (values) => {
         await waitTime(2000);
         console.log(values.name);
@@ -119,3 +124,5 @@ export default () => {
     </DrawerForm>
   );
 };
+
+export default DraweropenForm;

@@ -1,98 +1,12 @@
 import { PlusOutlined } from '@ant-design/icons';
-import type { ActionType, ProColumns } from '@ant-design/pro-components';
+import type { ActionType } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
 import { Button } from 'antd';
 import { useRef, useState } from 'react';
-import { request } from '@umijs/max';
 
+import services from '@/services/menus';
 import DrawerForm from './components/Drawer';
-const columns: ProColumns<Menus.MenuList>[] = [
-  {
-    dataIndex: 'index',
-    valueType: 'indexBorder',
-    width: 48,
-  },
-  {
-    title: '名称',
-    dataIndex: 'name',
-    copyable: true,
-    ellipsis: true,
-    tip: '标题过长会自动收缩',
-    formItemProps: {
-      rules: [
-        {
-          required: true,
-          message: '此项为必填项',
-        },
-      ],
-    },
-  },
-  {
-    title: '图标',
-    dataIndex: 'icon',
-  },
-  {
-    title: '状态',
-    dataIndex: 'status',
-  },
-  {
-    title: '组件',
-    dataIndex: 'component',
-  },
-  {
-    title: '路由',
-    dataIndex: 'path',
-  },
-  {
-    title: '类型',
-    dataIndex: 'type',
-  },
-  {
-    title: '是否可见',
-    dataIndex: 'hide',
-  },
-  {
-    title: '显示顺序',
-    dataIndex: 'sort',
-  },
-  {
-    title: '创建时间',
-    key: 'showTime',
-    dataIndex: 'CreatedAt',
-    valueType: 'date',
-    sorter: true,
-    hideInSearch: true,
-  },
-  {
-    title: '创建时间',
-    dataIndex: 'CreatedAt',
-    valueType: 'dateRange',
-    hideInTable: true,
-    search: {
-      transform: (value) => {
-        return {
-          startTime: value[0],
-          endTime: value[1],
-        };
-      },
-    },
-  },
-  {
-    title: '操作',
-    valueType: 'option',
-    key: 'option',
-    render: (text, record, _, action) => [
-      <a
-        key="editable"
-        onClick={() => {
-          action?.startEditable?.(record.ID);
-        }}
-      >
-        编辑
-      </a>,
-    ],
-  },
-];
+import columns from '../columns';
 
 export default () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
@@ -105,23 +19,19 @@ export default () => {
         actionRef={actionRef}
         cardBordered
         request={async (params = {} /* , sort, filter */) => {
-          return request<{
-            data: Menus.MenuList[];
-          }>('/v1/sys/menus', {
-            params,
-          });
+          return await services.queryMenuList(params);
         }}
         editable={{
           type: 'multiple',
         }}
-        /*    columnsState={{
+        columnsState={{
           persistenceKey: 'pro-table-singe-demos',
           persistenceType: 'localStorage',
-          onChange(value) {
+          /* onChange(value) {
             console.log('value: ', value);
-          },
-        }} */
-        rowKey="id"
+          }, */
+        }}
+        rowKey="ID"
         search={{
           labelWidth: 'auto',
         }}
@@ -137,8 +47,13 @@ export default () => {
             if (type === 'get') {
               return {
                 ...values,
-                created_at: [values.startTime, values.endTime],
+                CreatedAt: [values.startTime, values.endTime],
               };
+            } else if (type === 'set') {
+              values.name = undefined;
+              values.endTime = undefined;
+              values.startTime = undefined;
+              return values;
             }
             return values;
           },
@@ -160,11 +75,10 @@ export default () => {
           </Button>,
         ]}
       />
-      <DrawerForm></DrawerForm>
-      {/*  <CreateForm
-        onCancel={() => handleModalVisible(false)}
-        modalVisible={createModalVisible}
-      ></CreateForm> */}
+      <DrawerForm
+        open={createModalVisible}
+        onCancel={handleModalVisible}
+      ></DrawerForm>
     </>
   );
 };
