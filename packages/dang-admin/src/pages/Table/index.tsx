@@ -5,6 +5,7 @@ import {
   PageContainer,
   ProDescriptions,
   ProDescriptionsItemProps,
+  ProColumns,
   ProTable,
 } from '@ant-design/pro-components';
 import { Button, Divider, Drawer, message } from 'antd';
@@ -90,7 +91,7 @@ const TableList: React.FC<unknown> = () => {
   const actionRef = useRef<ActionType>();
   const [row, setRow] = useState<API.UserInfo>();
   const [selectedRowsState, setSelectedRows] = useState<API.UserInfo[]>([]);
-  const columns: ProDescriptionsItemProps<API.UserInfo>[] = [
+  const columns: ProColumns<API.UserInfo>[] = [
     {
       title: '名称',
       dataIndex: 'name',
@@ -138,7 +139,7 @@ const TableList: React.FC<unknown> = () => {
       ),
     },
   ];
-
+  const cols1: ProDescriptionsItemProps<API.UserInfo>[] = [];
   return (
     <PageContainer
       header={{
@@ -174,7 +175,13 @@ const TableList: React.FC<unknown> = () => {
             success,
           };
         }}
-        // columns={columns}
+        options={{
+          density: false,
+          setting: {
+            listsHeight: 400,
+          },
+        }}
+        columns={columns}
         rowSelection={{
           onChange: (_, selectedRows) => setSelectedRows(selectedRows),
         }}
@@ -259,7 +266,7 @@ const TableList: React.FC<unknown> = () => {
             params={{
               id: row?.name,
             }}
-            columns={columns}
+            columns={cols1}
           />
         )}
       </Drawer>

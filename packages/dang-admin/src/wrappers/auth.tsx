@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from '@umijs/max';
 
 export default (/* props */) => {
-  const isLogin = localStorage.getItem('roles') !== null;
+  const isLogin = true; //  localStorage.getItem('roles') !== null;
   if (isLogin) {
     return <Outlet />;
   } else {

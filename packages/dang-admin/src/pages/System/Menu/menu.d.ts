@@ -12,6 +12,7 @@ declare namespace Menus {
     note: string;
     permission: string;
     sort: number;
+    children: MenuList[];
     CreatedAt: Date;
     UpdatedAt: Date;
     DeteledAt: Date;

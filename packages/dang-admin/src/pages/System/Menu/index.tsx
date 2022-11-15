@@ -6,7 +6,7 @@ import { useRef, useState } from 'react';
 
 import services from '@/services/menus';
 import DrawerForm from './components/Drawer';
-import columns from '../columns';
+import columns from './columns';
 
 export default () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
@@ -17,20 +17,32 @@ export default () => {
       <ProTable<Menus.MenuList>
         columns={columns}
         actionRef={actionRef}
+        scroll={{ x: 'calc(100vw - 300px)' }}
+        bordered
         cardBordered
         request={async (params = {} /* , sort, filter */) => {
           return await services.queryMenuList(params);
         }}
         editable={{
           type: 'multiple',
+          actionRender: (row, config, defaultDoms) => {
+            //
+            if (row.children && row.children.length !== 0) {
+              return [defaultDoms.save, defaultDoms.cancel];
+            }
+            return [defaultDoms.save, defaultDoms.delete, defaultDoms.cancel];
+          },
+          onDelete: async (e) => {
+            console.log(e);
+          },
         }}
-        columnsState={{
+        /*    columnsState={{
           persistenceKey: 'pro-table-singe-demos',
           persistenceType: 'localStorage',
-          /* onChange(value) {
+            onChange(value) {
             console.log('value: ', value);
-          }, */
-        }}
+          },  
+        }} */
         rowKey="ID"
         search={{
           labelWidth: 'auto',
