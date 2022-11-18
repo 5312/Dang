@@ -1,14 +1,14 @@
 declare namespace API {
   interface Page {
-    total: number;
-    page: number;
-    limit: number;
+    list: Menus.MenuList[];
+    count: number;
+    pageIndex: number;
+    pageSize: number;
   }
 
   interface Results {
-    success?: boolean;
     msg: string;
-    code: 0 | 1;
+    code: number;
     data: Menus.MenuList[];
   }
 }

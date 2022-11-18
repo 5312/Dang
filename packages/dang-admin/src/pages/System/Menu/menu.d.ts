@@ -2,7 +2,7 @@ declare namespace Menus {
   interface MenuList {
     ID: number;
     name: string;
-    icon: string;
+    icon: any;
     parent_id: number;
     status: string;
     component: string;

@@ -38,7 +38,6 @@ enum ErrorShowType {
 }
 // 与后端约定的响应数据格式
 interface ResponseStructure {
-  success: boolean;
   data: any;
   errorCode?: number;
   errorMessage?: string;
@@ -51,12 +50,12 @@ export const request: RequestConfig = {
   timeout: 1000,
   headers: { 'X-Requested-With': 'XMLHttpRequest' },
   withCredentials: true,
-  // other axios options you want
   errorConfig: {
     // 错误抛出
     errorThrower(res: ResponseStructure) {
-      const { success, data, errorCode, errorMessage, showType } = res;
-      if (!success) {
+      console.log('错误抛出:', res);
+      const { data, errorCode, errorMessage, showType } = res;
+      if (data.code !== 200) {
         const error: any = new Error(errorMessage);
         error.name = 'BizError';
         error.info = { errorCode, errorMessage, showType, data };
@@ -65,6 +64,7 @@ export const request: RequestConfig = {
     },
     // 错误接收及处理
     errorHandler: (error: any, opts: any) => {
+      console.log('错误接收处理:', error);
       if (opts?.skipErrorHandler) throw error;
       // 我们的 errorThrower 抛出的错误。
       if (error.name === 'BizError') {
@@ -124,9 +124,12 @@ export const request: RequestConfig = {
       // 拦截响应数据，进行个性化处理
       const { data } = response;
       // console.log('请求成功', data);
-      if (!data.success) {
+      if (data.code !== 200) {
         message.error('请求失败！');
-      }
+        message.error(data.msg);
+      } /* else {
+        message.success(data.msg);
+      } */
       return response;
     },
   ],

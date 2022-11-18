@@ -1,8 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
 import type { ActionType } from '@ant-design/pro-components';
 import { ProTable } from '@ant-design/pro-components';
-import { Button } from 'antd';
-import { useRef, useState } from 'react';
+import { Button, message } from 'antd';
+import { useEffect, useRef, useState } from 'react';
 
 import services from '@/services/menus';
 import DrawerForm from './components/Drawer';
@@ -10,19 +10,34 @@ import columns from './columns';
 
 export default () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
-  console.log(createModalVisible);
+  // console.log(createModalVisible);
   const actionRef = useRef<ActionType>();
+  // 弹窗
+  useEffect(() => {
+    if (!createModalVisible) {
+      // 刷新
+      actionRef?.current?.reload();
+    }
+  }, [createModalVisible]);
   return (
     <>
       <ProTable<Menus.MenuList>
         columns={columns}
         actionRef={actionRef}
+        style={{ height: 'calc(100vh)' }}
         scroll={{ x: 'calc(100vw - 300px)' }}
         bordered
         cardBordered
-        request={async (params = {} /* , sort, filter */) => {
-          return await services.queryMenuList(params);
-        }}
+        pagination={false}
+        request={
+          async (/*params = {}  , sort, filter */) => {
+            const res = await services.queryMenuList({});
+            return {
+              ...res,
+              success: true,
+            };
+          }
+        }
         editable={{
           type: 'multiple',
           actionRender: (row, config, defaultDoms) => {
@@ -33,7 +48,15 @@ export default () => {
             return [defaultDoms.save, defaultDoms.delete, defaultDoms.cancel];
           },
           onDelete: async (e) => {
-            console.log(e);
+            const data = await services.deleteMenu({
+              menusId: e,
+            });
+            if (data.code === 200) {
+              message.success(data.msg);
+            } else {
+              message.error(data.msg);
+            }
+            actionRef?.current?.reload();
           },
         }}
         /*    columnsState={{
@@ -69,10 +92,6 @@ export default () => {
             }
             return values;
           },
-        }}
-        pagination={{
-          pageSize: 5,
-          onChange: (page) => console.log(page),
         }}
         dateFormatter="string"
         headerTitle="菜单列表"

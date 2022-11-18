@@ -1,17 +1,13 @@
 import type { ProColumns } from '@ant-design/pro-components';
 import { Space, Tag } from 'antd';
+import * as Icons from '@ant-design/icons';
+import React from 'react';
 const columns: ProColumns<Menus.MenuList>[] = [
-  // {
-  //   dataIndex: 'index',
-  //   valueType: 'indexBorder',
-  //   width: 48,
-  // },
-
   {
     title: '菜单名称',
     dataIndex: 'name',
     width: 200,
-    copyable: true,
+    // copyable: true,
     ellipsis: true,
     // tip: '标题过长会自动收缩',
     formItemProps: {
@@ -24,16 +20,25 @@ const columns: ProColumns<Menus.MenuList>[] = [
     },
   },
   {
+    align: 'center',
     title: '图标',
     width: 80,
     dataIndex: 'icon',
     search: false,
+    render: (_, record) => {
+      let str: keyof typeof Icons = record.icon;
+      // @ts-ignore
+      const dynamicIcon = React.createElement(Icons[str]);
+
+      return <>{dynamicIcon}</>;
+    },
   },
   {
     title: '类型',
     dataIndex: 'type',
     search: false,
     width: 80,
+    editable: false,
     renderFormItem: (_, { defaultRender }) => {
       return defaultRender(_);
     },
@@ -50,29 +55,23 @@ const columns: ProColumns<Menus.MenuList>[] = [
     width: 80,
   },
   {
-    title: '文件路径',
-    dataIndex: 'component',
-    search: false,
-    width: 300,
-  },
-  {
     title: '节点路由',
     dataIndex: 'path',
     width: 80,
     search: false,
   },
   {
+    title: '组件路径',
+    dataIndex: 'component',
+    search: false,
+    width: 300,
+  },
+
+  {
     title: '权限',
     dataIndex: 'permission',
     search: false,
     width: 80,
-  },
-  {
-    title: '是否可见',
-    dataIndex: 'hide',
-    search: false,
-    width: 80,
-    align: 'center',
   },
   {
     title: '排序',
@@ -82,7 +81,7 @@ const columns: ProColumns<Menus.MenuList>[] = [
   },
   {
     title: '更新时间',
-    dataIndex: 'UpdateAt',
+    dataIndex: 'UpdatedAt',
     valueType: 'date',
     sorter: true,
     width: 100,
