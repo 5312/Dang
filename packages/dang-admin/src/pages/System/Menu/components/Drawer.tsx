@@ -72,7 +72,7 @@ const DraweropenForm: React.FC<PropsWithChildren<DrawerFormProps>> = (
         <ProFormTreeSelect
           label="上级菜单"
           width="md"
-          name="parent_id"
+          name="parentId"
           fieldProps={{
             fieldNames: {
               label: 'name',
@@ -88,12 +88,10 @@ const DraweropenForm: React.FC<PropsWithChildren<DrawerFormProps>> = (
 
       <ProForm.Group>
         <ProFormText
-          required
           name="icon"
           width="md"
           label="图标"
           placeholder="请选择图标"
-          rules={[{ required: true }]}
         />
         <ProFormSelect
           required

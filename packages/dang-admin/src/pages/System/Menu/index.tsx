@@ -29,15 +29,14 @@ export default () => {
         bordered
         cardBordered
         pagination={false}
-        request={
-          async (/*params = {}  , sort, filter */) => {
-            const res = await services.queryMenuList({});
-            return {
-              ...res,
-              success: true,
-            };
-          }
-        }
+        request={async (params = {} /* , sort, filter */) => {
+          console.log(params);
+          const res = await services.queryMenuList(params);
+          return {
+            ...res,
+            success: true,
+          };
+        }}
         editable={{
           type: 'multiple',
           actionRender: (row, config, defaultDoms) => {
@@ -57,6 +56,11 @@ export default () => {
               message.error(data.msg);
             }
             actionRef?.current?.reload();
+          },
+          onSave: async (rowKey, data, row) => {
+            console.log(rowKey, data, row);
+            const result = await services.modifyMenu({ menusId: rowKey }, data);
+            console.log(result);
           },
         }}
         /*    columnsState={{

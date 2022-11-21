@@ -1,5 +1,5 @@
 import type { ProColumns } from '@ant-design/pro-components';
-import { Space, Tag } from 'antd';
+import { Tag } from 'antd';
 import * as Icons from '@ant-design/icons';
 import React from 'react';
 const columns: ProColumns<Menus.MenuList>[] = [
@@ -22,15 +22,18 @@ const columns: ProColumns<Menus.MenuList>[] = [
   {
     align: 'center',
     title: '图标',
-    width: 80,
+    width: 150,
     dataIndex: 'icon',
     search: false,
     render: (_, record) => {
       let str: keyof typeof Icons = record.icon;
-      // @ts-ignore
-      const dynamicIcon = React.createElement(Icons[str]);
-
-      return <>{dynamicIcon}</>;
+      if (str) {
+        // @ts-ignore
+        const dynamicIcon = React.createElement(Icons[str]);
+        return <>{dynamicIcon}</>;
+      } else {
+        return;
+      }
     },
   },
   {
@@ -39,14 +42,17 @@ const columns: ProColumns<Menus.MenuList>[] = [
     search: false,
     width: 80,
     editable: false,
-    renderFormItem: (_, { defaultRender }) => {
-      return defaultRender(_);
+    render: (_, record) => {
+      const typeText = ['菜单', '按钮', '权限'];
+      const typColor = ['blue', 'green', 'volcano'];
+      return <Tag color={typColor[record.type]}>{typeText[record.type]}</Tag>;
     },
-    render: (_, record) => (
-      <Space>
-        <Tag key={record.type}>{record.type}</Tag>
-      </Space>
-    ),
+
+    // render: (_, record) => (
+    //   <Space>
+    //     <Tag key={record.type}>{record.type}</Tag>
+    //   </Space>
+    // ),
   },
   {
     title: '状态',

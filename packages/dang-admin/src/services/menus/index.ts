@@ -28,6 +28,24 @@ async function addMenus(
   });
 }
 
+/** 此处后端没有提供注释 POST /api/v1/user */
+async function modifyMenu(
+  params: {
+    menusId: RecordKey;
+  },
+  body?: Menus.MenuList,
+  options?: { [key: string]: any },
+) {
+  const { menusId: param0 } = params;
+  return request<API.Results>(`/v1/sys/menus/${param0}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    data: body,
+    ...(options || {}),
+  });
+}
 /** 此处后端没有提供注释 DELETE /api/v1/user/${param0} */
 async function deleteMenu(
   params: {
@@ -47,4 +65,5 @@ export default {
   queryMenuList,
   addMenus,
   deleteMenu,
+  modifyMenu,
 };
