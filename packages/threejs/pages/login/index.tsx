@@ -1,17 +1,19 @@
 import { useEffect } from 'react';
 import { threeInitRender } from '../../util/init';
 import loader from './login';
-import { history } from '@umijs/max';
-import { Button } from 'antd';
-
+// import { history } from '@umijs/max';
+// import { Button } from 'antd';
+// 样式
 import style from './login.module.less';
 import human from '@/assets/bg/login_human.png';
 
-const layout = () => {
-  localStorage.setItem('roles', '');
-  // 登录后跳转
-  history.push('/cesium');
-};
+import Login from './index_login';
+
+// const layout = () => {
+//   localStorage.setItem('roles', '');
+//   // 登录后跳转
+//   history.push('/cesium');
+// };
 
 const DocsPage = () => {
   useEffect(() => {
@@ -33,9 +35,10 @@ const DocsPage = () => {
           <img className="login-plane-human" src={human} alt="" />
           <div></div>
           <div className="login-plane-form">
-            <Button type="primary" onClick={layout}>
+            <Login />
+            {/* <Button type="primary" onClick={layout}>
               登录
-            </Button>
+            </Button> */}
           </div>
         </div>
       </div>
