@@ -1,11 +1,11 @@
 {
-  "name": "dang",
-  "version": "0.1.0-Alpha",
   "private": true,
   "description": "基于Umi的企业级微前端项目",
   "author": "5312 <1765080897@qq.com>",
   "scripts": {
+    "bootstrap": "node scripts/bootstrap.js",
     "format": "prettier --cache --write .",
+    "p": "plop",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -14,6 +14,7 @@
     "@umijs/max": "^4.0.29",
     "antd": "^4.24.1",
     "dayjs": "^1.11.6",
+    "execa": "^6.1.0",
     "plop": "^3.1.1",
     "qs": "^6.11.0"
   },
