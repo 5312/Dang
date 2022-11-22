@@ -1,8 +1,13 @@
-import { execaSync } from 'execa';
+const exec = require('child_process').exec;
 
-try {
-  const { stdout } = await execaSync('pnpm', ['run', 'p']);
-  console.log(stdout);
-} catch (error) {
-  console.log(error);
-}
+const cmdStr = 'node ./scripts/bin/scripts.js';
+// pnpm dlx create-umi@latest
+exec(cmdStr, (err, stdout, stderr) => {
+  if (err) {
+    console.warn('启动失败', err);
+  } else {
+    console.warn('启动成功');
+    console.warn(stdout);
+    // console.warn(stderr);
+  }
+});

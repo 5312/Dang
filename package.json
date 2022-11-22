@@ -14,7 +14,6 @@
     "@umijs/max": "^4.0.29",
     "antd": "^4.24.1",
     "dayjs": "^1.11.6",
-    "execa": "^6.1.0",
     "plop": "^3.1.1",
     "qs": "^6.11.0"
   },
@@ -22,6 +21,7 @@
     "@types/qs": "^6.9.7",
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
+    "child_process": "^1.0.2",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",

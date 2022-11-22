@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-console.log('scripts.js');
+console.log('执行scripts.js');

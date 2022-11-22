@@ -123,13 +123,10 @@ export const request: RequestConfig = {
     (response: any) => {
       // 拦截响应数据，进行个性化处理
       const { data } = response;
-      // console.log('请求成功', data);
       if (data.code !== 200) {
         message.error('请求失败！');
         message.error(data.msg);
-      } /* else {
-        message.success(data.msg);
-      } */
+      }
       return response;
     },
   ],
