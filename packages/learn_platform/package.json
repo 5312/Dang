@@ -1,0 +1,14 @@
+{
+  "name": "@Dang/learnSys",
+  "private": true,
+  "author": "5312 <1765080897@qq.com>",
+  "scripts": {
+    "build": "max build",
+    "dev": "max dev",
+    "format": "prettier --cache --write .",
+    "postinstall": "max setup",
+    "setup": "max setup",
+    "start": "npm run dev"
+  },
+  "devDependencies": {}
+}
