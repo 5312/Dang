@@ -1,0 +1,62 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login {
+  :global {
+    .login-plane {
+      position: absolute;
+      z-index: 9999;
+      width: 429px;
+      height: 357px;
+      background-image: url('../../assets/bg/login_border.png');
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+
+      .login-plane-container {
+        width: 100%;
+        height: 100%;
+        border-radius: 18px;
+        background-color: #007eff2e;
+        position: relative;
+
+        .login-plane-human :local {
+          position: absolute;
+          width: 260px;
+          right: -120px;
+          top: -100px;
+          animation: human-move 8s linear 0s infinite normal;
+        }
+      }
+    }
+  }
+}
+
+/* 定义一个动画（需要设置至少一个形参name） */
+@keyframes human-move {
+  0% {
+    top: -100px;
+  }
+
+  25% {
+    top: -120px;
+  }
+
+  50% {
+    top: -100px;
+  }
+
+  75% {
+    top: -80px;
+  }
+
+  100% {
+    background: -100px;
+  }
+}

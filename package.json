@@ -1,4 +1,6 @@
 {
+  "name": "Dang",
+  "version": "0.1.0-Alpha",
   "private": true,
   "description": "基于Umi的企业级微前端项目",
   "author": "5312 <1765080897@qq.com>",
