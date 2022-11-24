@@ -12,19 +12,10 @@ export async function getInitialState(): Promise<{ name: string }> {
 export const layout: RunTimeLayoutConfig = () => {
   return {
     layout: 'mix',
-    // logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
+    logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
     menu: {
       locale: false,
-      params: {
-        // userId: initialState?.currentUser?.userid,
-      },
-      // request: async (params, defaultMenuData) => {
-      //   // initialState.currentUser 中包含了所有用户信息
-      //   const menuData = await fetchMenuData();
-      //   return menuData;
-      // },
     },
-    // locale: false, // 默认开启，如无需菜单国际化可关闭
   };
 };
 
