@@ -31,7 +31,7 @@ const staticRoutes = [
           {
             path: 'access3/:id',
             name: '菜单3',
-            component: './Access',
+            component: './Home',
           },
         ],
       },
