@@ -6,6 +6,10 @@
 
 [ProComponents](https://procomponents.ant.design/docs/intro)
 
+### 跳过代码检查
+
+`git commit --no-verify -m ''`
+
 #### 全局安装依赖
 
 `pnpm i lodash -w`

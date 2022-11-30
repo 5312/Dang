@@ -13,17 +13,20 @@ export default defineConfig({
     { path: '/login', layout: false, component: './login' },
     {
       path: '/',
+      name: '概览',
       layout: false,
-      redirect: '/login',
+      routes: [
+        { path: '/', redirect: '/home' },
+        { path: '/home', name: '首页', component: './Home' },
+      ],
     },
-    { path: '/home', layout: false, component: './Home' },
   ],
   npmClient: 'pnpm',
   define: {
     CESIUM_BASE_URL: JSON.stringify(''),
   },
   publicPath: '/',
-  base: '',
+  // base: '', // 启动报错 redirect 不到
   copy: [
     { from: path.join(cesiumSource, cesiumWorkers), to: 'Cesium/Workers' },
     { from: path.join(cesiumSource, 'Assets'), to: 'Cesium/Assets' },
