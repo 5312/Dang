@@ -25,7 +25,7 @@ export default defineConfig({
   define: {
     CESIUM_BASE_URL: JSON.stringify(''),
   },
-  publicPath: '/',
+  publicPath: '',
   // base: '', // 启动报错 redirect 不到
   copy: [
     { from: path.join(cesiumSource, cesiumWorkers), to: 'Cesium/Workers' },
