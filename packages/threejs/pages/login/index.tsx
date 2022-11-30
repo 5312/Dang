@@ -33,7 +33,7 @@ const DocsPage = () => {
       <div className="login-plane">
         <div className="login-plane-container">
           <img className="login-plane-human" src={human} alt="" />
-          <div></div>
+          {/* <div></div> */}
           <div className="login-plane-form">
             <Login />
             {/* <Button type="primary" onClick={layout}>

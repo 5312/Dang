@@ -12,6 +12,8 @@
     "start": "npm run dev"
   },
   "dependencies": {
+    "cesium": "^1.99.0",
+    "nosleep.js": "^0.12.0",
     "three": "^0.146.0"
   },
   "devDependencies": {

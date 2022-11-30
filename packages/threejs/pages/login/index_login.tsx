@@ -16,11 +16,14 @@ import { message, Space, Tabs } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
 import { history } from '@umijs/max';
+
+import style from './login.module.less';
+
 type LoginType = 'phone' | 'account';
 
 const iconStyles: CSSProperties = {
   marginInlineStart: '16px',
-  color: 'rgba(0, 0, 0, 0.2)',
+  color: 'rgb(245 240 240 / 93%)',
   fontSize: '24px',
   verticalAlign: 'middle',
   cursor: 'pointer',
@@ -33,7 +36,7 @@ const items = [
 const Login: React.FC = () => {
   const [loginType, setLoginType] = useState<LoginType>('account');
   return (
-    <div style={{ backgroundColor: 'white' }}>
+    <div className={style.login} style={{ color: '#fff' }}>
       <LoginForm
         logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
         title="Github"
@@ -57,7 +60,7 @@ const Login: React.FC = () => {
           // if (data.success) {
           //   message.success(data.msg);
           //   localStorage.setItem('xd_login', 'true');
-          history.push('/');
+          history.push('/home');
           // } else {
           //   message.error(data.msg);
           // }
@@ -68,10 +71,7 @@ const Login: React.FC = () => {
           activeKey={loginType}
           onChange={(activeKey) => setLoginType(activeKey as LoginType)}
           items={items}
-        >
-          {/* <Tabs.TabPane key={'account'} tab={'账号密码登录'} />
-          <Tabs.TabPane key={'phone'} tab={'手机号登录'} /> */}
-        </Tabs>
+        ></Tabs>
         {loginType === 'account' && (
           <>
             <ProFormText
@@ -81,7 +81,7 @@ const Login: React.FC = () => {
                 size: 'large',
                 prefix: <UserOutlined className={'prefixIcon'} />,
               }}
-              placeholder={'用户名: 714700220072022'}
+              placeholder={'用户名: '}
               rules={[
                 {
                   required: true,
@@ -96,7 +96,7 @@ const Login: React.FC = () => {
                 size: 'large',
                 prefix: <LockOutlined className={'prefixIcon'} />,
               }}
-              placeholder={'密码: ant.design'}
+              placeholder={'密码: '}
               rules={[
                 {
                   required: true,
