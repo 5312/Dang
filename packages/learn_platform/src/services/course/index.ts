@@ -75,9 +75,14 @@ export async function queryCourseList(params: ParamsType, body: TableList) {
 }
 
 type LearnTime = {
-  yCourseKnowledgeStudy: string;
+  /*   yCourseKnowledgeStudy: string;
   id: string;
-  _: Date | number;
+  _: Date | number; */
+  YStudyLog: string;
+  courseNo: string;
+  courseName: string;
+  effectivenum: number;
+  coursePointNo: number;
 };
 /* 读取时间 */
 export async function knowledge(params: LearnTime) {
@@ -90,3 +95,8 @@ export async function knowledge(params: LearnTime) {
     params: { ...params },
   });
 }
+
+/* 
+http://202.117.118.1/learning/yCourseKnowledgeController.do?YStudyLog&courseNo=0002001&courseName=%E7%BD%91%E7%BB%9C%E6%95%99%E8%82%B2%E7%BB%9F%E8%80%83%E8%BE%85%E5%AF%BC&effectivenum=5&coursePointNo=7
+
+*/

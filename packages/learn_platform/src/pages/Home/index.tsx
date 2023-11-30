@@ -160,11 +160,17 @@ const Right: React.FC<RightProps> = ({ courseName, courseNo }) => {
     if (lasttime) {
       t = dayjs(lasttime).valueOf();
     }
+    console.log(data, t);
     // return;
     knowledge({
-      yCourseKnowledgeStudy: '',
+      /*  yCourseKnowledgeStudy: '',
       id: data.id,
-      _: t,
+      _: t, */
+      YStudyLog: '',
+      courseNo: courseNo,
+      courseName: data.courseName, //      '网络教育统考辅导',
+      effectivenum: 5,
+      coursePointNo: Number(data.coursePointNo),
     })
       .then(() => {
         console.log('刷新表');
